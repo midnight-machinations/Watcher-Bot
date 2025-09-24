@@ -14,7 +14,13 @@
 				"ms-dotnettools.csdevkit",
 				"streetsidesoftware.code-spell-checker",
 				"csharpier.csharpier-vscode"
-			]
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"[csharp]": {
+					"editor.defaultFormatter": "csharpier.csharpier-vscode"
+				}
+			}
 		}
 	}
 }
