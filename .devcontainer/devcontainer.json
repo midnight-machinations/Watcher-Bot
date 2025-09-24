@@ -7,5 +7,14 @@
 	"runArgs": [
 		"--env-file",
 		".devcontainer/.env"
-	]
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-dotnettools.csdevkit",
+				"streetsidesoftware.code-spell-checker",
+				"csharpier.csharpier-vscode",
+			]
+		}
+	}
 }
