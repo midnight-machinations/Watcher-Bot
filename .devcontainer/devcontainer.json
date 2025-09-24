@@ -3,6 +3,9 @@
 {
 	"name": "Watcher Bot Dev Container",
 	"image": "mcr.microsoft.com/devcontainers/dotnet:1-9.0-bookworm",
-	"postCreateCommand": "dotnet restore Watcher-Bot.sln",
-	"runArgs": ["--env-file", ".devcontainer/.env"]
+	"postCreateCommand": "dotnet restore Watcher-Bot.sln && dotnet tool restore",
+	"runArgs": [
+		"--env-file",
+		".devcontainer/.env"
+	]
 }
