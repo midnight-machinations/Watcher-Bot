@@ -1,3 +1,4 @@
+using NetCord;
 using NetCord.Rest;
 using NetCord.Services.ApplicationCommands;
 
@@ -11,15 +12,21 @@ public class Queue : ApplicationCommandModule<ApplicationCommandContext>
             string queueName = "default",
         [SlashCommandParameter(
             Name = "duration",
-            Description = "Number of hours to join the queue for (can be decimal value)",
+            Description = "Number of hours to join the queue for",
             MinValue = .5f,
-            MaxValue = 5f
+            MaxValue = 12f
         )]
-            float hours = .5f
+            float hours = 1
     )
     {
-        InteractionCallbackProperties message = InteractionCallback.Message();
+        float durationSeconds = hours * 3600;
 
-        await Context.Interaction.SendResponseAsync(message);
+        InteractionMessageProperties messageProperties = new();
+        messageProperties.WithContent(
+            $"Joined the {queueName} queue for {TimeSpan.FromSeconds(durationSeconds)} --- Logic not implemented"
+        );
+        messageProperties.WithFlags(MessageFlags.Ephemeral);
+
+        await Context.Interaction.SendResponseAsync(InteractionCallback.Message(messageProperties));
     }
 }
