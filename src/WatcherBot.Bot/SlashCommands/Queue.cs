@@ -6,27 +6,25 @@ namespace WatcherBot.Bot.SlashCommands;
 
 public class Queue : ApplicationCommandModule<ApplicationCommandContext>
 {
-    [SlashCommand("join", "Joins the specified queue")]
-    public async Task JoinQueueAsync(
-        [SlashCommandParameter(Name = "queue_name", Description = "Name of the queue to join")]
-            string queueName = "default",
-        [SlashCommandParameter(
-            Name = "duration",
-            Description = "Number of hours to join the queue for",
-            MinValue = .5f,
-            MaxValue = 12f
-        )]
-            float hours = 1
+    [SlashCommand("create", "Creates a queue for users to join")]
+    public async Task CreateQueueAsync(
+        [SlashCommandParameter(Name = "name", Description = "Name of the queue")] string name,
+        [SlashCommandParameter(Name = "size", Description = "Size to auto pull at")]
+            ushort? size = null
     )
     {
-        float durationSeconds = hours * 3600;
-
-        InteractionMessageProperties messageProperties = new();
-        messageProperties.WithContent(
-            $"Joined the {queueName} queue for {TimeSpan.FromSeconds(durationSeconds)} --- Logic not implemented"
+        Context.Interaction.SendResponseAsync(
+            InteractionCallback.DeferredMessage(MessageFlags.Ephemeral)
         );
-        messageProperties.WithFlags(MessageFlags.Ephemeral);
 
-        await Context.Interaction.SendResponseAsync(InteractionCallback.Message(messageProperties));
+        // Simulate creating a queue
+        await Task.Delay(5000);
+
+        Context.Interaction.ModifyResponseAsync(
+            (message) =>
+            {
+                message.WithContent($"Created '{name}' queue with a size of {size}");
+            }
+        );
     }
 }
