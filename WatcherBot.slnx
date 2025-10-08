@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/WatcherBot.Bot/WatcherBot.Bot.csproj" />
+    <Project Path="src/WatcherBot.Queue/WatcherBot.Queue.csproj" />
   </Folder>
 </Solution>
