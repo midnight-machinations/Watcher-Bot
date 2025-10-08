@@ -29,6 +29,7 @@ public class Queue : ApplicationCommandModule<ApplicationCommandContext>
         );
     }
 
+    [SlashCommand("delete", "Deletes a queue")]
     public async Task DeleteQueueAsync(
         [SlashCommandParameter(Name = "name", Description = "Name of the queue")] string name
     )
